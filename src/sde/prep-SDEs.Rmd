@@ -1,0 +1,46 @@
+---
+title: "smoothSDE Analysis of Atlantic BRS Ziphius DTAG Data: Data Preparation"
+author: "Stacy DeRuiter"
+date: "November 2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Tag Deployments
+
+The data to be analyzed here are from 3 DTAG deployments on *Ziphius cavirostris* during the Atlantic BRS. Each whale was part of a CEE with a scaled MFAS source. The tag deployment IDs are:
+
+- zc17_236a
+- zc19_218a
+- zc20_232a
+
+Note that in [Michelot *et al.* 2021](https://doi.org/10.1007/s13253-021-00450-6) (and a vignette provided to Atlantic BRS in preparation for this analysis), none of the above tags were analyzed. Instead, the paper presents data from previous DTAG *Ziphius* deployments zc13_210, zc10_272a, zc11_267a, and zc13_211. (The deployment IDs without letters are missing them because Theo did not retain the letters and I (SDR) don't know from memory what they are.)
+
+## Data Pre-preparation
+
+Prior to importing data into R, pre-processing was carried out in Matlab to (somewhat) match that used by Michelot *et al.* 2021, which states,
+
+>> The sampling rate of the raw data varied between 5 and 25 Hz, and we downsampled by taking averages over non-overlapping 5-s windows, to reduce the computational cost while keeping a sufficiently fine resolution to detect behavioural changes over each dive. 
+
+We retained the 3-second windows used by Michelot, but used the function `decdc()` from the [animaltags tool kit](https://github.com/animaltags/tagtools_matlab) to decimate the PRH data from its original (usuall 25 Hz) resolution to one sample per 3 seconds (1/3 Hz). Note that the paper says that the data resolution used was one sample per 5 seconds, but the provided dataset actually has a sample every 0.0008333 hours (or every 3 seconds).
+
+Dives were detected in the data using the animaltag function `find_dives()` with settings: `findall = 0` (find only complete dives; omit dives at end of record where tag is off animal before end of dive) and `min_depth` 50m (dives must reach a max depth of at least 50m to be detected). 
+
+Dives were considered to be "deep" dives if they were more than 800m deep.
+
+The resulting low-resolution data were combined into one .csv file for all whales, including variables:
+
+- whaleID: whale ID string (example: "zc17_234a")
+- ID: dive ID number ("dive-1", "dive-2", etc.)
+- pitch: whale pitch in radians, ranging from $\frac{-\pi}{2}$ to $\frac{\pi}{2}$ 
+- roll: whale roll in radians, ranging from $-\pi$ to $\pi$
+- heading: whale heading *in degrees*, ranging from -180 to 180.
+- depth: whale depth in meters
+- time: time in hours since start of tag record
+- diveprop: time as a proportion of the total duration of the current dive (0 is start of dive, 1 is end of dive). *Note: `diveprop` > 1 means that the data is after the "end" of the  dive (during the post-dive surfacing period).
+
+All pre-processing was done in Matlab 2023a, and is recorded in the file smoothSDE_prep.m.
