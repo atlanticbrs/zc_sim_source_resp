@@ -67,6 +67,7 @@ make_metric_histo <- function(cur, ...) {
 
 ### make plot
 pdf("uniplot.pdf", width = 10, height = 8)
+# png("uniplot.png", width = 10*300, height = 8*300, res = 300)
 
 lay <- matrix(c(1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 7, 7), 4, 3, byrow = FALSE)
 layout(lay)
@@ -262,6 +263,9 @@ sig_yes <- sig_yes[oo, ]
 labs <- rownames(sig_yes)
 labs <- sub("_", " ", sub("_", " ", labs))
 
+# change bounce to shallower dive
+labs <- sub("bounce", "shallower dive", labs)
+
 sig_tmp <- reshape2::melt(sig_yes)
 sig_tmp$sig <- "yes"
 sig_tmp2 <- reshape2::melt(sig_no)
@@ -274,7 +278,7 @@ oo <- c(4, 1, 3, 2)
 
 bp <- barplot(sig_yes[, oo], xlab = "RL bins (dB SPL)", ylab = "number of metrics identified", las = 1, col = c(palette.colors(), "white"), ylim = c(0, 30))
 box()
-legend("topleft", legend = c(gsub("maxdepth", "max. depth", gsub("_", " ", rownames(sig_yes)))), pt.bg = c(palette.colors(), "white"), pch = 22, bty = 'n')
+legend("topleft", legend = c(gsub("bounce", "shallower dive", gsub("maxdepth", "max. depth", gsub("_", " ", rownames(sig_yes))))), pt.bg = c(palette.colors(), "white"), pch = 22, bty = 'n')
 
 yes <- colSums(sig_yes)[oo]
 no <- colSums(sig_no)[oo]
@@ -324,6 +328,8 @@ rowtypes <- sub("Zc", "S", rowtypes)
 rowtypes <- sub("_DUML", "", rowtypes)
 rowtypes <- paste0(rowtypes, " (", bins, ")")
 coltypes <- gsub("_", " ", coltypes)
+coltypes <- gsub("maxdepth", "max. depth", coltypes)
+coltypes <- gsub("bounce", "shallower dive", coltypes)
 
 dimnames(m) <- list(rowtypes, coltypes)
 
