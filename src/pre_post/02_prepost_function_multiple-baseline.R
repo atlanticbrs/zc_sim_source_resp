@@ -11,19 +11,18 @@ source('sattag_summary.R')
 source('segment_fn.R')
 
 # Read the .rds file that define the template depth bins
-template_bins <- readRDS(here::here("data/template_bins.rds"))
+template_bins <- readRDS('data/template_bins.rds')
 bin_starts = template_bins$center - template_bins$halfwidth
 
 # load all window configurations
-study_windows <- readRDS(here::here("data/study_windows.rds"))
+study_windows <- readRDS('data/study_windows.rds')
 
 # Load the tag information
-# tag_info_all <- read_csv("data/tag_info_all-tags.csv", show_col_types = FALSE)
-tag_indices_bline <- read_csv(here::here("data/tag_info_mult-segments_baseline.csv"), 
+tag_indices_bline <- read_csv('data/tag_info_mult-segments_baseline.csv', 
                               show_col_types = FALSE)
-tag_indices_cee <- read_csv(here::here("data/sattag/tag_info_mult-segments_cee.csv"), 
+tag_indices_cee <- read_csv('data/sattag/tag_info_mult-segments_cee.csv', 
                             show_col_types = FALSE)
-tags_mult_bline_metadata <- read_csv(file = here::here('data/tag_info_mult-segments_baseline_metadata.csv'))
+tags_mult_bline_metadata <- read_csv(file = 'data/tag_info_mult-segments_baseline_metadata.csv')
 
 # Cull out only the files in tag_info
 dive_dir <- "../../01_shared_data_products/filter_sattag/series/"
