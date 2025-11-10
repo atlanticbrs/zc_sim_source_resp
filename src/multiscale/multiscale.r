@@ -59,6 +59,7 @@ stag <- stag[order(stag$Date), ]
 
 # make a window around CEE
 ceest <- meta$cee_st[meta$cee_id == "19_03"][2]
+ceeen <- meta$cee_en[meta$cee_id == "19_03"][2]
 winbacklag_hr <- 12
 winfrontlag_hr <- 12
 
@@ -87,11 +88,11 @@ lay <- matrix(c(
   7, 7, 7, 7
 ), 14, 4, byrow = TRUE)
 
-# png("multiscale.png", width = 10 * 320, height = 10 * 320, res = 320)
-pdf("multiscale.pdf", width = 10, height = 10)
+# png("multiscale.png", width = 7 * 600, height = 8.5 * 600, res = 600)
+pdf("multiscale2.pdf", width = 7, height = 8.5)
 
 layout(lay)
-par(mar = c(0.1, 11.1, 0.1, 0.1), family = "serif")
+par(mar = c(0.5, 8.8, 0.1, 0.1), family = "serif")
 
 # track filt
 track_filt <- track_datenum >= win[1] & track_datenum <= win[2]
@@ -99,9 +100,33 @@ track_filt <- track_datenum >= win[1] & track_datenum <= win[2]
 xlim_prime <- min(ceest - min(stag$Date), max(stag$Date) - ceest)
 xlims <- c(ceest - xlim_prime, ceest + xlim_prime)
 
-ylims <- range(unlist(yy))
+
+# lon
+ylims <- range(unlist(xx))
+
+plot(track_datenum, xx_m, type = 'n', axes = FALSE, xlab = '', ylab = '', ylim = ylims, xlim = xlims)
+abline(h = c(-75, -74.8, -74.6), col = "grey85", lty = 2)
+
+for(i in 1:100) {
+  lines(track_datenum, xx[i, ], col = rgb(0, 0, 0, .02))
+}
+
+points(track_datenum[!track_filt & track_dese], xx_m[!track_filt & track_dese], pch = 16, cex = .5)
+# axis(2, las = 1)
+axis(2, las = 1, at = c(-75, -74.8, -74.6), labels = c("-75\u00B0 00\'", "-74\u00B0 48\'", "-74\u00B0 36\'"))
+# legend("topleft", legend = "latitude", bty = 'n')
+box(lwd = 1.5)
+# rect(win[1], -10000, win[2], 10000, col = rgb(0, 0, 1, .25), border = NA)
+abline(v = ceest, col = "#EF476F", lty = 2, lwd = 2)
+
+points(track_datenum[track_filt & track_dese], xx_m[track_filt & track_dese], col = "#6186DC", pch = 16, cex = .5)
+mtext("long", side = 2, line = 4.3)
+
+addsubplotleg("(a)")
 
 # lat
+ylims <- range(unlist(yy))
+
 plot(track_datenum, yy_m, type = 'n', axes = FALSE, xlab = '', ylab = '', ylim = ylims, xlim = xlims)
 abline(h = c(35.40, 35.5, 35.6), col = "grey85", lty = 2)
 
@@ -120,51 +145,13 @@ abline(v = ceest, col = "#EF476F", lty = 2, lwd = 2)
 lines(track_datenum[track_filt & track_dese], yy_m[track_filt & track_dese], col = "#6186DC")
 # points(track_datenum[track_filt & track_dese], yy_m[track_filt & track_dese], col = "#6186DC", pch = 16, cex = .5)
 
-mtext("latitude", side = 2, line = 9.1, las = 2, adj = 0)
-
-addsubplotleg("(a)")
-
-
-ylims <- range(unlist(xx))
-
-# lon
-plot(track_datenum, xx_m, type = 'n', axes = FALSE, xlab = '', ylab = '', ylim = ylims, xlim = xlims)
-abline(h = c(-75, -74.8, -74.6), col = "grey85", lty = 2)
-
-for(i in 1:100) {
-  lines(track_datenum, xx[i, ], col = rgb(0, 0, 0, .02))
-}
-
-points(track_datenum[!track_filt & track_dese], xx_m[!track_filt & track_dese], pch = 16, cex = .5)
-# axis(2, las = 1)
-axis(2, las = 1, at = c(-75, -74.8, -74.6), labels = c("-75\u00B0 00\'", "-74\u00B0 48\'", "-74\u00B0 36\'"))
-# legend("topleft", legend = "latitude", bty = 'n')
-box(lwd = 1.5)
-# rect(win[1], -10000, win[2], 10000, col = rgb(0, 0, 1, .25), border = NA)
-abline(v = ceest, col = "#EF476F", lty = 2, lwd = 2)
-
-points(track_datenum[track_filt & track_dese], xx_m[track_filt & track_dese], col = "#6186DC", pch = 16, cex = .5)
-mtext("longitude", side = 2, line = 9.1, las = 2, adj = 0)
+mtext("lat", side = 2, line = 4.3)
 
 addsubplotleg("(b)")
 
 
-# 
-# # lon
-# plot(track$datenum, track$X, type = 'n', axes = FALSE, xlab = '', ylab = '', ylim = c(-75.1, -74.5))
-# abline(h = c(-75, -74.8, -74.6), col = "grey85", lty = 2)
-# points(track$datenum, track$X, pch = 16, cex = .75)
-# axis(2, las = 1, at = c(-75, -74.8, -74.6), labels = c("-75\u00B0 00\'", "-74\u00B0 48\'", "-74\u00B0 36\'"))
-# # axis(2, las = 1)
-# # legend("topleft", legend = "longitude", bty = 'n')
-# box(lwd = 1.5)
-# # rect(win[1], -10000, win[2], 10000, col = rgb(0, 0, 1, .25), border = NA)
-# abline(v = ceest, col = "#EF476F", lty = 2, lwd = 2)
-# points(track_filt$datenum, track_filt$X, col = "#6186DC", pch = 16, cex = .75)
-# mtext("longitude", side = 2, line = 11.1, las = 2, adj = 0)
 
-
-par(mar = c(3.1, 11.1, 0.1, 0.1))
+par(mar = c(3.1, 8.8, 0.1, 0.1))
 
 xlims <- xlims/60/60 - min(ceest)/60/60
 
@@ -185,12 +172,12 @@ box(lwd = 1.5)
 axis(1)
 # legend("topleft", legend = "stag", bty = 'n')
 lines(stag_filt$Date/60/60 - min(ceest)/60/60, -stag_filt$Depth, type = 'l', col = "#6186DC")
-mtext("depth (m)", side = 2, line = 9.1, las = 2, adj = 0)
+mtext("depth (m)", side = 2, line = 4.3)
 
 
 addsubplotleg("(c)")
 
-par(mar = c(0.1, 11.1, 0.1, 0.1))
+par(mar = c(0.5, 8.8, 0.1, 0.1))
 
 # zoom
 xlims <- c(win[1] - 0.25*60*60, win[2] + 0.25*60*60)
@@ -203,12 +190,12 @@ axis(2, las = 1, col = "#6186DC", at = seq(0, -1400, by = -200), labels = abs(se
 lines(dtag$t, -dtag$p, col = "#069D75", lwd = 2)
 abline(v = ceest, col = "#EF476F", lty = 2, lwd = 2)
 legend("bottomleft", legend = c("STag093", "DTag19_218", "CEE start"), col = c("black", "#069D75", "#EF476F"), lwd = c(3, 2, 2), lty = c(1, 1, 2), bty = 'n')
-mtext("depth (m)", side = 2, line = 9.1, las = 2, adj = 0)
+mtext("depth (m)", side = 2, line = 4.3)
 
 
 addsubplotleg("(d)")
 
-par(mar = c(3.1, 11.1, 0.1, 0.1))
+par(mar = c(3.1, 8.8, 0.1, 0.1))
 
 
 
@@ -226,7 +213,7 @@ nsd_m <- colMeans(nsd_r)
 ylims <- range(unlist(nsd_r[, track_datenum >= win[1] & track_datenum <= win[2]]))
 xlims <- xlims/60/60 - min(ceest)/60/60
 plot(track_datenum/60/60 - min(ceest)/60/60, nsd_m, type = 'n', axes = FALSE, xlab = '', ylab = '', xlim = xlims, ylim = ylims + c(-50, 50))
-abline(h = seq(0, 400, by = 100), col = "grey85", lty = 2)
+abline(h = seq(0, 800, by = 200), col = "grey85", lty = 2)
 
 for(i in 1:100) {
   lines(track_datenum/60/60 - min(ceest)/60/60, nsd_r[i, ], col = rgb(0, 0, 0, .04))
@@ -241,13 +228,13 @@ axis(2, las = 1, col = "#6186DC")
 abline(v = ceest/60/60 - min(ceest)/60/60, col = "#EF476F", lty = 2, lwd = 2)
 # legend("topleft", legend = "net squared displacement", bty = 'n')
 axis(1, col = "#6186DC")
-mtext(expression(paste("NSD (", km^2, ")")), side = 2, line = 9.1, las = 1, adj = 0)
+mtext(expression(paste("NSD (", km^2, ")")), side = 2, line = 4.3)
 
 
 addsubplotleg("(e)")
 
 
-par(mar = c(0.1, 11.1, 0.1, 0.1))
+par(mar = c(0.5, 8.8, 0.1, 0.1))
 
 
 
@@ -271,14 +258,15 @@ box(col = "#069D75", lwd = 1.5)
 axis(2, las = 1, col = "#069D75", at = seq(0, -1400, by = -200), labels = abs(seq(0, -1400, by = -200)))
 # legend("topleft", legend = "dtag", bty = 'n')
 abline(v = ceest/60/60 - min(ceest)/60/60, col = "#EF476F", lty = 2, lwd = 2)
-mtext("depth (m)", side = 2, line = 9.1, las = 1, adj = 0)
+mtext("depth (m)", side = 2, line = 4.3)
+segments(0, -1450, 1.02, -1450, col = "#EF476F", lwd = 4)
 
 text(rowMeans(cbind(dtag$t[dtag$dive_cues$st], dtag$t[dtag$dive_cues$en]))/60/60 - min(ceest)/60/60, -100, 1:nrow(dtag$dive_cues), col = 1:nrow(dtag$dive_cues) + 1)
 
 
 addsubplotleg("(f)")
 
-par(mar = c(4.1, 11.1, 0.1, 0.1))
+par(mar = c(4.1, 8.8, 0.1, 0.1))
 
 # msa
 
@@ -304,7 +292,7 @@ axis(1, col = "#069D75")
 
 # legend("topleft", legend = "pitch", bty = 'n')
 abline(v = ceest/60/60 - min(ceest)/60/60, col = "#EF476F", lty = 2, lwd = 2)
-mtext(expression(paste("MSA (", m %.% s^{-2}, ")")), side = 2, line = 9.1, las = 1, adj = 0)
+mtext(expression(paste("MSA (", m %.% s^{-2}, ")")), side = 2, line = 4.3)
 mtext("hours since (to) sound exposure", side = 1, line = 3.1)
 addsubplotleg("(g)")
 
