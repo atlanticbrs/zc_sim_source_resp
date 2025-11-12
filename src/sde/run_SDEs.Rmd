@@ -19,8 +19,9 @@ library(extrafont)
 
 theme_set(theme_bw(base_size = 16) + theme(text = element_text(family="Times New Roman")))
 knitr::opts_chunk$set(echo = TRUE,
+                      cache = TRUE,
                       fig.path = 'figures/zc-sde-',
-                      dev = c('jpeg', 'png'),
+                      dev = c('pdf', 'png'),
                       dpi = 600,
                       fig.width = 5, fig.height = 3.5)
 ```
@@ -55,7 +56,7 @@ Michelot T (2023). smoothSDE: Varying-coefficient stochastic differential
 
 ## Read in and prepare data
 
-The data has undergone additional pre-processing in Matlab. See files "prep-SDEs.Rmd" and "smoothSDE_prep.m" for details.
+The data has undergone pre-processing in Matlab. See files "prep_SDEs.Rmd" and "smoothSDE_prep.m" for details.
 
 Data from a given dive will be considered exposed to the CEE if any part of that dive overlapped with the CEE.
 
@@ -89,7 +90,6 @@ Since audits are not available for all tag deployments, this info is not all eas
 Info used is:
 
 ```{r}
-# cee_meta_from_will <- read_csv('https://raw.githubusercontent.com/atlanticbrs/zcss_data_dev/main/00_data_input/cee/cee_metadata_flat.csv?token=GHSAT0AAAAAACOPSCEQWIEZL3QN6XLNQQXUZO5FVYQ')
 CEE_meta <- tibble(whaleID = c("zc17_234a", 
                                "zc19_218a",
                                "zc20_232a", 
@@ -458,7 +458,7 @@ deep_ddeptht_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc19_218aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc19_218', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag19_218', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -467,7 +467,7 @@ deep_ddeptht_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc20_232aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc20_232', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag20_232', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -530,7 +530,7 @@ deep_head_tsde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc19_218aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc19_218', y = 'Change in Diffusion Parameter\n(Deep Heading)', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag19_218', y = 'Change in Diffusion Parameter\n(Deep Heading)', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -540,7 +540,7 @@ deep_head_tsde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc20_232aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc20_232', y = 'Change in Diffusion Parameter\n(Deep Heading)', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag20_232', y = 'Change in Diffusion Parameter\n(Deep Heading)', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -711,7 +711,7 @@ shallow_ddepth_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc17_234aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc17_234', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag17_234', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -720,7 +720,7 @@ shallow_ddepth_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc20_232aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc20_232', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag20_232', y = 'Depth Rate\nDifference Smooth', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -783,7 +783,7 @@ shallow_head_tsde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc17_234aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc17_234', y = 'Change in Diffusion Parameter\n(Shallow Heading)', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag17_234', y = 'Change in Diffusion Parameter\n(Shallow Heading)', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -792,7 +792,7 @@ shallow_head_tsde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = "zc20_232aCEE"), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
   gf_theme(strip.text.y = element_blank()) |>
-  gf_labs(title = 'zc20_232', y = 'Change in Diffusion Parameter\n(Shallow Heading)', x = 'Proportion of Dive') |>
+  gf_labs(title = 'DTag20_232', y = 'Change in Diffusion Parameter\n(Shallow Heading)', x = 'Proportion of Dive') |>
   gf_hline(yintercept = 0, color = 'black', size = 1.1)
 ```
 
@@ -863,6 +863,8 @@ CalvinBayes::acf_plot(resids_shal_headt |>
 colrz <- RColorBrewer::brewer.pal(3, 'Set2')
 colrz[1] <- colrz[3] <- 'grey50'
 
+# note that the 25 Hz DTAG data used to make this figure is not included in the GitHub repo
+# as it is too large. It can be shared on request.
 abrs_zc25 <- read_csv('data/AtlBRS_Zc_smoothSDE_data_25Hz.csv',
                     show_col_types = FALSE) 
 abrs_zc25 <- left_join(abrs_zc25, CEE_meta, by = 'whaleID') |>
@@ -1159,7 +1161,7 @@ diff_smooths <- plot_grid(zc20_232a_depth_diffsmooth1,
                           zc20_232a_depth_diffsmooth2,
                           rel_heights = c(1,1),
                           ncol = 1,
-                          align = 'hv')
+                          align = 'hv', axis = 'bt')
 
 plot_grid(tag_data, diff_smooths,
           ncol = 2,
@@ -1201,7 +1203,7 @@ zc19_218a_msa |>
 
 Version with overlaid dive panel
 
-```{r, overlaid-deep}
+```{r, overlaid-deep, fig.height=7.5, fig.width = 6.5}
 this_overlaid_deep <- abrs_zc_deep |>
           filter(whaleID == 'zc20_232a' | cee_dive_status == 'pre or post') |> 
           mutate(cee_dive_status = factor(cee_dive_status))
@@ -1286,7 +1288,7 @@ diff_smooths <- plot_grid(zc20_232a_overlaid_deep,
                           rel_heights = c(1,1),
                           rel_widths = c(1,1),
                           ncol = 2, nrow = 2,
-                          align = 'hv')
+                          align = 'hv', axis = 'bt')
 
 plot_grid(tag_data, diff_smooths,
           ncol = 2,
@@ -1308,7 +1310,7 @@ diff_smooths <- plot_grid(zc19_218a_overlaid_deep,
                           zc19_218a_depth_diffsmooth,
                           rel_heights = c(1,1),
                           ncol = 1, nrow = 2,
-                          align = 'hv')
+                          align = 'hv', axis = 'bt')
 
 plot_grid(tag_data, diff_smooths,
           ncol = 2,
@@ -1475,10 +1477,10 @@ tag_data20 <- plot_grid(zc20_232a_dive_RL,
                       align = 'hv')
 ```
 
-```{r, timeseries-three-whales, fig.width = 20, fig.height=7}
+```{r, fig-9-timeseries-three-whales, fig.width = 20, fig.height=7}
 plot_grid(tag_data17, tag_data19, tag_data20,
-          labels = c('A', 'B', 'C'),
-          label_size = 32, vjust = 1, hjust = -1.5,
+          labels = c('(a)', '(b)', '(c)'),
+          label_size = 26, vjust = 1, hjust = -0.5,
           ncol = 3,
           rel_widths = c(1,1),
           align = 'hv')
@@ -1489,24 +1491,27 @@ plot_grid(tag_data17, tag_data19, tag_data20,
 
 
 ```{r, prep-all-diff-smooths, fig.height=7.5, fig.width = 6.5}
-theme_set(theme_bw(base_size = 11))
+# theme_set(theme_bw(base_size = 11))
 
 zc17_234a_depth_diffsmoothb <-
  shallow_ddepth_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = 'zc17_234aCEE'), 
               term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
-  gf_theme(strip.text.y = element_blank()) |>
   gf_labs(title = '', 
     y = 'Depth Rate\nDifference Smooth',
     x = ''
     # x = 'Proportion of Dive'
     ) |>
-  gf_hline(yintercept = 0, color = 'black', size = 1.1)
+  gf_hline(yintercept = 0, color = 'black', size = 1.1) 
 
 temp <- ggplot_build(zc17_234a_depth_diffsmoothb)
 temp$data[[1]]$fill = 'grey70'
-temp$plot$theme$text$size = 11
+temp$plot$theme <- theme_bw(base_size = 16) + 
+  theme(text = element_text(family="Times New Roman"),
+        strip.text.y = element_blank())
+#temp$plot$theme$text$size = 16
+#temp$plot$theme$text$family = 'Times New Roman'
 zc17_234a_depth_diffsmoothb <- ggplot_gtable(temp)
 
 zc19_218a_depth_diffsmoothb <-
@@ -1517,7 +1522,6 @@ zc19_218a_depth_diffsmoothb <-
                             term = "cee_dive_status",
                             resp = FALSE, 
                             show_CI = "simultaneous") |>
-  gf_theme(strip.text.y = element_blank()) |>
   gf_labs(title = '', 
           y = 'Depth Rate\nDifference Smooth', 
           x = ''
@@ -1527,7 +1531,9 @@ zc19_218a_depth_diffsmoothb <-
 
 temp <- ggplot_build(zc19_218a_depth_diffsmoothb)
 temp$data[[1]]$fill = 'grey70'
-temp$plot$theme$text$size = 11
+temp$plot$theme <- theme_bw(base_size = 16) + 
+  theme(text = element_text(family="Times New Roman"),
+        strip.text.y = element_blank())
 zc19_218a_depth_diffsmoothb <- ggplot_gtable(temp)
 
 zc20_232a_depth_diffsmooth1b <-
@@ -1535,7 +1541,6 @@ zc20_232a_depth_diffsmooth1b <-
               covs = list(cee_dive_status = 'zc20_232aCEE'), 
               term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
-  gf_theme(strip.text.y = element_blank()) |>
   gf_labs(title = '', 
     y = 'Depth Rate\nDifference Smooth', 
     x = ''
@@ -1545,14 +1550,15 @@ zc20_232a_depth_diffsmooth1b <-
 
 temp <- ggplot_build(zc20_232a_depth_diffsmooth1b)
 temp$data[[1]]$fill = 'grey70'
-temp$plot$theme$text$size = 11
+temp$plot$theme <- theme_bw(base_size = 16) + 
+  theme(text = element_text(family="Times New Roman"),
+        strip.text.y = element_blank())
 zc20_232a_depth_diffsmooth1b <- ggplot_gtable(temp)
 
 zc20_232a_depth_diffsmooth2b <- 
   deep_ddeptht_sde$plot_par("diveprop", par_names = "sigma", n_post = 1e4,
               covs = list(cee_dive_status = 'zc20_232aCEE'), term = "cee_dive_status",
               resp = FALSE, show_CI = "simultaneous") |>
-  gf_theme(strip.text.y = element_blank()) |>
   gf_labs(title = '', 
           y = 'Depth Rate\nDifference Smooth', 
           x = 'Proportion of Dive'
@@ -1561,39 +1567,64 @@ zc20_232a_depth_diffsmooth2b <-
 
 temp <- ggplot_build(zc20_232a_depth_diffsmooth2b)
 temp$data[[1]]$fill = 'grey70'
-temp$plot$theme$text$size = 11
+temp$plot$theme <- theme_bw(base_size = 16) + 
+  theme(text = element_text(family="Times New Roman"),
+        strip.text.y = element_blank())
 zc20_232a_depth_diffsmooth2b <- ggplot_gtable(temp)
 
 ```
 
-```{r, all-diff-smooths, fig.height = 10, fig.width=8}
-overlaid_dives <- plot_grid(zc17_234a_overlaid_shallow + 
-                              labs(title = 'zc17_234, Shallow Dives'),
-                           zc19_218a_overlaid_deep + 
-                             labs(title = 'zc19_218, Deep Dives'),
-                           zc20_232a_overlaid_shallow + 
-                             labs(title = 'zc20_232, Shallow Dives'),
-                           zc20_232a_overlaid_deep + 
-                             labs(title = 'zc20_232, Deep Dives',
-                                   x = 'Proportion of Dive'),
-                           rel_heights = c(1,1,1,1),
-                           labels = c('A', 'B', 'C', 'D'),
-                           label_size = 22,
-                           nrow = 4,
-                           align = 'hv')
+```{r, fig-10-all-diff-smooths, fig.height = 10, fig.width=8}
+# overlaid_dives <- plot_grid(zc17_234a_overlaid_shallow + 
+#                               labs(title = 'DTag17_234, Shallow Dives'),
+#                            zc19_218a_overlaid_deep + 
+#                              labs(title = 'DTag19_218, Deep Dives'),
+#                            zc20_232a_overlaid_shallow + 
+#                              labs(title = 'DTag20_232, Shallow Dives'),
+#                            zc20_232a_overlaid_deep + 
+#                              labs(title = 'DTag20_232, Deep Dives',
+#                                    x = 'Proportion of Dive'),
+#                            rel_heights = c(1,1,1,1),
+#                            labels = c('(a)', '(b)', '(c)', '(d)'),
+#                            label_size = 20,
+#                            nrow = 4,
+#                            align = 'hv')
+# 
+# diff_smooths <- plot_grid(zc17_234a_depth_diffsmoothb,
+#                           zc19_218a_depth_diffsmoothb,
+#                           zc20_232a_depth_diffsmooth1b,
+#                           zc20_232a_depth_diffsmooth2b,
+#                           rel_heights = c(1,1,1,1),
+#                           ncol = 1,
+#                           align = 'hv')
 
-diff_smooths <- plot_grid(zc17_234a_depth_diffsmoothb,
-                          zc19_218a_depth_diffsmoothb,
-                          zc20_232a_depth_diffsmooth1b,
-                          zc20_232a_depth_diffsmooth2b,
-                          rel_heights = c(1,1,1,1),
-                          ncol = 1,
-                          align = 'hv')
+# plot_grid(overlaid_dives,
+#           diff_smooths,
+#           rel_widths = c(1,1),
+#           ncol = 2,
+#           align = 'hv', axis = 'bt',
+#           greedy = FALSE)
 
-plot_grid(overlaid_dives,
-          diff_smooths,
-          rel_widths = c(1,1),
-          ncol = 2,
-          align = 'hv',
-          greedy = FALSE)
+plot_grid(zc17_234a_overlaid_shallow + 
+            labs(title = 'DTag17_234, Shallow Dives'),
+          zc17_234a_depth_diffsmoothb,
+          
+          zc19_218a_overlaid_deep + 
+            labs(title = 'DTag19_218, Deep Dives'),
+          zc19_218a_depth_diffsmoothb,
+          
+          zc20_232a_overlaid_shallow + 
+            labs(title = 'DTag20_232, Shallow Dives'),
+          zc20_232a_depth_diffsmooth1b,
+          
+          zc20_232a_overlaid_deep + 
+            labs(title = 'DTag20_232, Deep Dives',
+                 x = 'Proportion of Dive'),
+          zc20_232a_depth_diffsmooth2b,
+          
+          rel_heights = c(1,1,1,1),
+          labels = c('(a)', '', '(b)', '', '(c)', '', '(d)', ''),
+          label_size = 20,
+          nrow = 4,
+          align = 'hv', axis = 'bt')
 ```
