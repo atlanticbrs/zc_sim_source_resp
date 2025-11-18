@@ -1,5 +1,5 @@
 library(tidyverse)
-library(here)
+# library(here)
 library(readr)
 
 # All Tags
@@ -55,7 +55,8 @@ for(i in 1:nrow(tags_all)){
   
 }
 
-write_csv(tags_all, file = here::here('data/tag_info_all-tags_manifest.csv'))
+# write_csv(tags_all, file = here::here('data/tag_info_all-tags_manifest.csv'))
+write_csv(tags_all, file = 'data/tag_info_all-tags_manifest.csv')
 
 # Assemble the baseline segments
 tags_mult <- tags_all %>% 
@@ -68,7 +69,8 @@ tags_mult_cee_out <- tags_mult %>%
   filter(ser_length - cee_start_idx > 6 * 12,
          cee_start_idx > 6 * 12) %>% 
   select(deployid, cee_start_idx)#, cee_id
-write_csv(tags_mult_cee_out, file = here::here('data/sattag/tag_info_mult-segments_cee.csv'))
+# write_csv(tags_mult_cee_out, file = here::here('data/sattag/tag_info_mult-segments_cee.csv'))
+write_csv(tags_mult_cee_out, file = 'data/sattag/tag_info_mult-segments_cee.csv')
 
 # Calculate and Write-out the Baseline Indices
 uniq_ans <- unique(tags_mult_cee_out$deployid)
@@ -117,7 +119,8 @@ tags_mult_bline_metadata <- tags_mult_bline_out
 tags_mult_bline_out <- tags_mult_bline_out %>% 
   select(deployid, baseline_start_idx, baseline_end_idx)
 
-write_csv(tags_mult_bline_out, file = here::here('data/tag_info_mult-segments_baseline.csv'))
-write_csv(tags_mult_bline_metadata, file = here::here('data/tag_info_mult-segments_baseline_metadata.csv'))
-
+# write_csv(tags_mult_bline_out, file = here::here('data/tag_info_mult-segments_baseline.csv'))
+# write_csv(tags_mult_bline_metadata, file = here::here('data/tag_info_mult-segments_baseline_metadata.csv'))
+write_csv(tags_mult_bline_out, file = 'data/tag_info_mult-segments_baseline.csv')
+write_csv(tags_mult_bline_metadata, file = 'data/tag_info_mult-segments_baseline_metadata.csv')
 
