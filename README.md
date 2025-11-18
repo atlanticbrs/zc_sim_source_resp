@@ -1,4 +1,18 @@
-# For review only!
+# zc_sim_source_resp
+
+This respository contains the data and codue used to produce analyses and figures for the accepted version of:
+
+> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar.
+
+If you hae questions about anything in this repository or are interested in using this daaset please contact Brandon Southall (brandon.southall@sea-inc.net).
+
+## details
+- directories:
+- `00_data_input` contains the metadata on timing of sound exposure treatments
+- `src` contains the source code and is organized into directories for each analysis or figure.
+- `01_shared_data_products` contains intermediate data files created by code in `src` and shared across different analyses.
+- To run some analyses you will need to download `02_large_data` (see below).
+
 
 ## included source code directories
 - gam -- generalized linear models (dive response)
@@ -13,7 +27,6 @@
 
 ## large input data files
 Some of the directories require very large input data files to run that don't fit on github. They can be downloaded at this link: https://duke.box.com/v/zcss-large-data. The contents can be deposited into `02_large_data`. All other required input data files should already be included in the repository
-
 
 ## dependencies
 
@@ -39,3 +52,17 @@ install.packages('crawlUtils', repos=c('https://dsjohnson.r-universe.dev','https
 
 ## targets
 recieved levels extract and horizontal displacement use the package `targets`. Start by sourcing the `_targets.R` file. `targets::tar_visnetwork()` will give you an idea of the workflow. `targets::tar_make()` will run the entire workflow (make sure the large data files are already downloaded and deposited in the correct directory (see above). See more details at: https://books.ropensci.org/targets/.
+
+# citation
+
+Please cite this dataset as:
+
+> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. zc_sim_source_resp: Data and code for Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar. doi: [TBD]
+
+Please cite the manuscipt as:
+
+>  Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar. doi: [TBD]
+
+# contact information
+
+If you have questions about anything in this repository or are interested in using this dataset please contact Brandon Southall (brandon.southall@sea-inc.net).
