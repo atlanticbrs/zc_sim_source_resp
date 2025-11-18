@@ -23,16 +23,12 @@ all_whales = table(); % empty place holder
 for t = 1:size(tagz,1)
     clear A Aw fs head M Mw p pitch roll D
     % read in data from PRH file (if you have 12.5 and 25 Hz USE 25)
-    % (why: decimation can only be by integer factor and we want 3 Hz)
     load(['data/prh/', tagz(t,:), 'prh.mat']);
     % dive detections: using settings @ top of script, findall = 0
     D = find_dives(p, fs, mindepth, at_surf);
-    % decimate data to 1 sample per 3 seconds, or fs = 1/3 Hz
-    
     mag_jerk = njerk(M, fs);
     msa1 = msa(A, 1);
    
-    
     % convert  heading to degrees
     head_deg = head .* 180/pi;
 
