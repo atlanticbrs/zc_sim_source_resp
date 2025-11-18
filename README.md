@@ -1,5 +1,7 @@
 # zc_sim_source_resp
 
+[![DOI](https://zenodo.org/badge/819634852.svg)](https://doi.org/10.5281/zenodo.17640058)
+
 This respository contains the data and codue used to produce analyses and figures for the accepted version of:
 
 > Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar.
@@ -57,7 +59,7 @@ recieved levels extract and horizontal displacement use the package `targets`. S
 
 Please cite this dataset as:
 
-> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. zc_sim_source_resp: Data and code for Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar. doi: [TBD]
+> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. zc_sim_source_resp: Data and code for Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar. doi: 10.5281/zenodo.17640058
 
 Please cite the manuscipt as:
 
