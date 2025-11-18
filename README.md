@@ -4,12 +4,12 @@ This respository contains the data and codue used to produce analyses and figure
 
 > Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar.
 
-If you hae questions about anything in this repository or are interested in using this daaset please contact Brandon Southall (brandon.southall@sea-inc.net).
+If you have questions about anything in this repository or are interested in using this daaset please contact Brandon Southall (brandon.southall@sea-inc.net).
 
 ## details
 - directories:
 - `00_data_input` contains the metadata on timing of sound exposure treatments
-- `src` contains the source code and is organized into directories for each analysis or figure.
+- `src` contains the source code and is organized into directories for each analysis or figure. Input data which is specifically relevant to each of these analyses is included in these directories.
 - `01_shared_data_products` contains intermediate data files created by code in `src` and shared across different analyses.
 - To run some analyses you will need to download `02_large_data` (see below).
 
@@ -20,7 +20,7 @@ If you hae questions about anything in this repository or are interested in usin
 - multiscale -- combining dtag and stag data
 - pre post -- dive response
 - pre post explore -- dive response data exploration
-- recieved levels extract -- calculated recieved levels of exposures
+- received levels extract -- calculated received levels of exposures
 - sde -- dtag dive analysis
 - social -- group composition analysis before during and after exposures
 - univariate -- distributions of dive patterns compared to exposure dives
