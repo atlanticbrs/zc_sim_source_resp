@@ -2,7 +2,7 @@
 
 This respository contains the data and codue used to produce analyses and figures for the accepted version of:
 
-> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar.
+> Southall BL, Schick RS, Cioffi WR, DeRuiter SL, Foley HJ, Harris CM, Harshbarger AE, Joseph JE, Margolina T, Nowacek DP, Quick NJ, Swaim ZT, Thomas L, Waples DM, Webster DL, Wisse JH, Read AJ. 2025. Behavioral responses of goose-beaked whales (*Ziphius cavirostris*) to simulated military sonar. Ecosphere. doi: https://doi.org/10.1002/ecs2.70501
 
 If you have questions about anything in this repository or are interested in using this daaset please contact Brandon Southall (brandon.southall@sea-inc.net).
 
