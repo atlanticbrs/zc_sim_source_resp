@@ -37,16 +37,16 @@ p_strip    <- p_strip    + standard_theme
 
 # Explicit 2x3 layout: left four panels in a 2x2 grid, strip spans both rows
 layout_design <- "
-ABc
-DEc
+ABe
+CDe
 "
 
 final_plot <- (
   p_kde_093 +    # A
     p_1d_093  +    # B
-    p_strip   +    # c  (spans both rows)
-    p_kde_096 +    # D
-    p_1d_096       # E
+    p_kde_096  +    # E
+    p_1d_096 +    # D
+    p_strip       # c  (spans both rows)
 ) +
   plot_layout(design = layout_design, guides = "collect") +
   plot_annotation(tag_levels = "a", tag_prefix = "(", tag_suffix = ")")
