@@ -9,7 +9,7 @@ df_all <- readr::read_csv('output/scaled_source_24hr/2024-03-04_pre-post_multipl
   dplyr::filter(tag != "ZcTag109")
 
 # Metadata for a) labeling, and b) making sure we don't get multiple vlaues for ZcTag093
-tags_mult_bline_metadata <- read_csv(file = here::here('data/sattag/tag_info_mult-segments_baseline_metadata.csv')) %>% 
+tags_mult_bline_metadata <- read_csv(file = 'data/sattag/tag_info_mult-segments_baseline_metadata.csv') %>% 
   dplyr::select(deployid, cee_id) %>% 
   distinct()
 
